@@ -39,10 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',  # < As per whitenoise documentation
+    'livereload', # live reload, before django.contrib.staticfiles
     'django.contrib.staticfiles',
     
     # 3rd party apps
     'rest_framework',
+    
+    # my own apps
+    'pyapp.apps.PyappConfig',
 ]
 
 MIDDLEWARE = [
@@ -54,6 +58,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'livereload.middleware.LiveReloadScript', # refresh automatically when frontend is updated
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -70,6 +76,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'debug': DEBUG, # make sure changes are made to templates
         },
     },
 ]
